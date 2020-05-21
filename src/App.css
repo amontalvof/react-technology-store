@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap");
 
 :root {
-  --primaryColor: #5fb7ea;
-  --primaryRGBA: rgba(0, 0, 0, 0.3);
+  --primaryColor: #80deea;
+  --primaryRGBA: rgba(0, 0, 0, 0.5);
   --mainGrey: #fafafa;
   --darkGrey: #5f5e5e;
   --mainWhite: #fff;
@@ -21,6 +21,6 @@
 }
 body {
   font-family: "Open Sans", sans-serif !important;
-  background: var(--mainGrey) !important;
+  background: var(--darkGrey) !important;
   color: var(--mainBlack);
 }
