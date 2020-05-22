@@ -1,9 +1,10 @@
 import React from "react";
-import { ProductConsumer } from "../context";
 import Hero from "../components/Hero/";
 import { Link } from "react-router-dom";
 import mainBcg from "../images/mainBcg.jpg";
 import { Button } from "react-rainbow-components";
+import Facilities from "../components/Facilities";
+import Forsale from "../components/Forsale";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,8 @@ export default function HomePage() {
           <Button label="OUR PRODUCTS" variant="border-filled" />
         </Link>
       </Hero>
+      <Facilities />
+      <Forsale title={"sale products"} />
     </React.Fragment>
   );
 }
