@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 const SidecartWrapper = styled.div`
-  border-left: 3px solid ${(props) => props.theme.rainbow.palette.brand.main};
+  .seccion {
+    margin: 3px;
+  }
+  .titulo-cart {
+    color: #a6a6a6;
+  }
 `;
 
 export default SidecartWrapper;

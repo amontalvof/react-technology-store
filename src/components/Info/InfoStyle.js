@@ -43,7 +43,7 @@ export const InfoWrapper = styled.section`
     letter-spacing: var(--mainSpacing);
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     #content {
       width: 100%;
       min-height: 100vh;
@@ -58,10 +58,10 @@ export const InfoWrapper = styled.section`
     }
 
     #left {
-      padding: 1rem;
+      padding: 3rem;
     }
     #right {
-      padding: 1rem;
+      padding: 3rem;
     }
   }
 

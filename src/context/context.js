@@ -22,7 +22,7 @@ class ProductProvider extends Component {
     filteredProducts: [],
     featuredProducts: [],
     singleProduct: {},
-    loading: false,
+    loading: true,
   };
 
   componentDidMount() {
@@ -44,43 +44,140 @@ class ProductProvider extends Component {
       (item) => item.featured === true
     );
 
-    this.setState({
-      storedProducts: storedProducts,
-      filteredProducts: storedProducts,
-      featuredProducts: featuredProducts,
-      cart: this.getStorageCart(),
-      singleProduct: this.getStorageProduct(),
-      loading: false,
-    });
+    this.setState(
+      {
+        storedProducts: storedProducts,
+        filteredProducts: storedProducts,
+        featuredProducts: featuredProducts,
+        cart: this.getStorageCart(),
+        singleProduct: this.getStorageProduct(),
+        loading: false,
+      },
+      () => {
+        this.addTotals();
+      }
+    );
   };
 
   //get storage cart
   getStorageCart = () => {
-    return [];
+    //return [];
+    let cart;
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    } else {
+      cart = [];
+    }
+    return cart;
   };
 
   //get storage product
   getStorageProduct = () => {
-    return {};
+    //return {};
+    return localStorage.getItem("singleProduct")
+      ? JSON.parse(localStorage.getItem("singleProduct"))
+      : {};
   };
 
   //get totals
-  getTotals = () => {};
+  getTotals = () => {
+    let subTotal = 0;
+    let cartItems = 0;
+    this.state.cart.forEach((item) => {
+      subTotal += item.total;
+      cartItems += item.count;
+    });
+    subTotal = parseFloat(subTotal.toFixed(2));
+    let tax = subTotal * 0.1;
+    tax = parseFloat(tax.toFixed(2));
+    let total = subTotal + tax;
+    total = parseFloat(total.toFixed(2));
+    return {
+      cartItems,
+      subTotal,
+      tax,
+      total,
+    };
+  };
 
   //add totals
-  addTotals = () => {};
+  addTotals = () => {
+    const totals = this.getTotals();
+    this.setState({
+      cartItems: totals.cartItems,
+      cartSubTotal: totals.subTotal,
+      cartTax: totals.tax,
+      cartTotal: totals.total,
+    });
+  };
 
   //sync Storage
-  syncStorage = () => {};
+  syncStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+  };
 
   //add To Cart
   addToCart = (id) => {
-    console.log(`add to cart ${id}`);
+    //console.log(`add to cart ${id}`);
+    let tempCart = [...this.state.cart];
+    let tempProducts = [...this.state.storedProducts];
+    let tempItem = tempCart.find((item) => item.id === id);
+    let total;
+    //console.log(tempItem);
+
+    if (!tempItem) {
+      tempItem = tempProducts.find((item) => item.id === id);
+      //console.log(tempItem);
+      if (tempItem.featured === false) {
+        total = tempItem.price;
+      } else {
+        total = tempItem.price - (tempItem.price * tempItem.forsale) / 100;
+      }
+      //console.log(total);
+      let cartItem = { ...tempItem, count: 1, total };
+      //console.log(cartItem);
+      tempCart = [...tempCart, cartItem];
+      //console.log(tempCart);
+    } else {
+      tempItem.count++;
+      if (!tempItem.featured) {
+        tempItem.total = tempItem.price * tempItem.count;
+      } else {
+        tempItem.total =
+          (tempItem.price - (tempItem.price * tempItem.forsale) / 100) *
+          tempItem.count;
+      }
+      tempItem.total = parseFloat(tempItem.total.toFixed(2));
+    }
+
+    this.setState(
+      () => {
+        return { cart: tempCart };
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage(); //si activo este metodo que esta arriba guardo los datos en el local storage del navegador
+        this.openCart();
+      }
+    );
+    //console.log(tempItem);
   };
 
   //set single product
   setSingleProduct = (id) => {
-    console.log(`set single product ${id}`);
+    //console.log(`set single product ${id}`);
+    //console.log(id);
+
+    let product = this.state.storedProducts.find((item) => item.id === id);
+    localStorage.setItem("singleProduct", JSON.stringify(product)); //si ejecuto esta linea guardo los datos en el local storage del navegador
+    //console.log(this.state.storedProducts);
+
+    //console.log(product);
+
+    this.setState({
+      singleProduct: { ...product },
+      loading: false,
+    });
   };
 
   //handle sidebar

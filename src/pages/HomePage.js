@@ -17,6 +17,12 @@ export default function HomePage() {
       </Hero>
       <Facilities />
       <Forsale title={"sale products"} />
+      <div style={{ textAlign: "center" }}>
+        <Link to="/products" style={{ textDecoration: "none", margin: "2rem" }}>
+          <Button label="OUR PRODUCTS" variant="border-filled" />
+        </Link>
+      </div>
+      <br />
     </React.Fragment>
   );
 }

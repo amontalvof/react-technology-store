@@ -8,8 +8,16 @@ export const ForsaleWrapper = styled.div`
     justify-content: space-between; /* switched from default (flex-start, see below) */
     /*background-color: lightyellow;*/
   }
-  .fila-grande > div {
+  .computadora {
     width: 30vw;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    /*border: 2px dashed red;*/
+  }
+
+  .tablet {
+    width: 45vw;
     height: auto;
     margin-right: auto;
     margin-left: auto;
