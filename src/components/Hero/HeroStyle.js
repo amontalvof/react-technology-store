@@ -13,6 +13,7 @@ export const HeroWrapper = styled.div`
     align-self: flex-end;
     min-height: ${(props) => (props.max ? "50vh" : "30vh")};
     min-width: 70%;
+    margin-bottom: 20px;
   }
   .title {
     padding-top: 2rem;

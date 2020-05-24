@@ -27,74 +27,68 @@ export default function index({ title }) {
             }
 
             let contador = -1;
-            if (myProducts.length > 0) {
-              if (Number(anchoPantalla.width) >= 1200) {
-                return myProducts.map((product) => {
-                  contador = contador + 1;
-                  if (contador % 3 === 0) {
-                    //console.log(contador, contador % 3);
-                    let slicedProducts = myProducts.slice(
-                      contador,
-                      contador + 3
-                    );
-                    //console.log(slicedProducts);
-                    return (
-                      <div>
-                        <div className="fila-grande">
-                          {slicedProducts.map((item) => {
-                            //console.log(item);
-                            return (
-                              <div className="computadora">
-                                <Product key={item.id} product={item} />
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <br />
-                      </div>
-                    );
-                  }
-                });
-              } else if (
-                Number(anchoPantalla.width) > 500 &&
-                Number(anchoPantalla.width) < 1200
-              ) {
-                return myProducts.map((product) => {
-                  contador = contador + 1;
-                  if (contador % 2 === 0) {
-                    //console.log(contador, contador % 3);
-                    let slicedProducts = myProducts.slice(
-                      contador,
-                      contador + 2
-                    );
-                    //console.log(slicedProducts);
-                    return (
-                      <div>
-                        <div className="fila-grande">
-                          {slicedProducts.map((item) => {
-                            //console.log(item);
-                            return (
-                              <div className="tablet">
-                                <Product key={item.id} product={item} />
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <br />
-                      </div>
-                    );
-                  }
-                });
-              } else {
-                return myProducts.map((product) => {
+            //if (myProducts.length > 0) {
+            if (Number(anchoPantalla.width) >= 1200) {
+              return myProducts.map((product) => {
+                contador = contador + 1;
+                if (contador % 3 === 0) {
+                  //console.log(contador, contador % 3);
+                  let slicedProducts = myProducts.slice(contador, contador + 3);
+                  //console.log(slicedProducts);
                   return (
-                    <div style={{ margin: "1rem" }}>
-                      <Product key={product.id} product={product} />
+                    <div>
+                      <div className="fila-grande">
+                        {slicedProducts.map((item) => {
+                          //console.log(item);
+                          return (
+                            <div className="computadora">
+                              <Product key={item.id} product={item} />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <br />
                     </div>
                   );
-                });
-              }
+                }
+              });
+            } else if (
+              Number(anchoPantalla.width) > 500 &&
+              Number(anchoPantalla.width) < 1200
+            ) {
+              return myProducts.map((product) => {
+                contador = contador + 1;
+                if (contador % 2 === 0) {
+                  //console.log(contador, contador % 3);
+                  let slicedProducts = myProducts.slice(contador, contador + 2);
+                  //console.log(slicedProducts);
+                  return (
+                    <div>
+                      <div className="fila-grande">
+                        {slicedProducts.map((item) => {
+                          //console.log(item);
+                          return (
+                            <div className="tablet">
+                              <Product key={item.id} product={item} />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <br />
+                    </div>
+                  );
+                }
+              });
+            } else {
+              return myProducts.map((product) => {
+                return (
+                  <div style={{ margin: "1rem" }}>
+                    <Product key={product.id} product={product} />
+                  </div>
+                );
+              });
             }
+            //}
           }}
         </ProductConsumer>
       </ForsaleWrapper>

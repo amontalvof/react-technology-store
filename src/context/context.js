@@ -200,6 +200,93 @@ class ProductProvider extends Component {
     this.setState({ cartOpen: true });
   };
 
+  //increment cart
+  incrementCart = (id) => {
+    //console.log(id);
+    let tempCart = [...this.state.cart];
+    const cartItem = tempCart.find((item) => item.id === id);
+    //console.log(cartItem);
+    cartItem.count++;
+    if (cartItem.featured === true) {
+      cartItem.total =
+        (cartItem.price - (cartItem.price * cartItem.forsale) / 100) *
+        cartItem.count;
+    } else {
+      cartItem.total = cartItem.count * cartItem.price;
+    }
+    cartItem.total = parseFloat(cartItem.total.toFixed(2));
+
+    this.setState(
+      () => {
+        return { cart: [...tempCart] };
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
+  //decrement cart
+  decrementCart = (id) => {
+    //console.log("decrement", id);
+    let tempCart = [...this.state.cart];
+    const cartItem = tempCart.find((item) => item.id === id);
+    cartItem.count = cartItem.count - 1;
+    if (cartItem.count === 0) {
+      this.removeCart(id);
+    } else {
+      if (cartItem.featured === true) {
+        cartItem.total =
+          (cartItem.price - (cartItem.price * cartItem.forsale) / 100) *
+          cartItem.count;
+      } else {
+        cartItem.total = cartItem.count * cartItem.price;
+      }
+      cartItem.total = parseFloat(cartItem.total.toFixed(2));
+
+      this.setState(
+        () => {
+          return { cart: [...tempCart] };
+        },
+        () => {
+          this.addTotals();
+          this.syncStorage();
+        }
+      );
+    }
+  };
+
+  //remove cart
+  removeCart = (id) => {
+    //console.log("remove", id);
+    let tempCart = [...this.state.cart];
+    tempCart = tempCart.filter((item) => item.id !== id);
+    this.setState(
+      {
+        cart: [...tempCart],
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
+  //clear cart
+  clearCart = () => {
+    //console.log("clear");
+    this.setState(
+      {
+        cart: [],
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
   render() {
     return (
       <ProductContext.Provider
@@ -211,6 +298,10 @@ class ProductProvider extends Component {
           openCart: this.openCart,
           addToCart: this.addToCart,
           setSingleProduct: this.setSingleProduct,
+          incrementCart: this.incrementCart,
+          decrementCart: this.decrementCart,
+          removeCart: this.removeCart,
+          clearCart: this.clearCart,
         }}
       >
         {/*something really important with this setup is the simple fact that you do need to render children*/}

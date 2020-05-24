@@ -68,12 +68,10 @@ export default function index() {
                   style={{ textDecoration: "none", margin: "2rem" }}
                 >
                   <Button
-                    label="Button Outline Brand"
+                    label="MY CART"
                     variant="outline-brand"
                     onClick={closeCart}
-                  >
-                    MY CART
-                  </Button>
+                  />
                 </Link>
               </div>
             </Drawer>
