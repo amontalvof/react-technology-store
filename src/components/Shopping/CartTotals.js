@@ -1,6 +1,5 @@
 import React from "react";
 import { ProductConsumer } from "../../context";
-import { Link } from "react-router-dom";
 import { Button } from "react-rainbow-components";
 
 export default function CartTotals() {

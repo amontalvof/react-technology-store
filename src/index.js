@@ -6,12 +6,15 @@ import * as serviceWorker from "./serviceWorker";
 //----------------------------------------------------------------------------------------------------------------------------
 import { BrowserRouter as Router } from "react-router-dom";
 import { ProductProvider } from "./context/";
+import ScrollToTop from "./components/Scroll/ScrollToTop";
 
 ReactDOM.render(
   <ProductProvider>
     <Router>
       <React.StrictMode>
-        <App />
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
       </React.StrictMode>
     </Router>
   </ProductProvider>,

@@ -38,6 +38,7 @@ class App extends Component {
           <Navbar />
           <Sidebar />
           <Sidecart />
+
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/about" component={About} />
@@ -47,6 +48,7 @@ class App extends Component {
             <Route path="/cart" exact component={Cart} />
             <Route component={Default} />
           </Switch>
+
           <Footer />
         </Application>
       </React.Fragment>

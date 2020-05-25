@@ -5,6 +5,7 @@ import mainBcg from "../images/mainBcg.jpg";
 import { Button } from "react-rainbow-components";
 import Facilities from "../components/Facilities";
 import Forsale from "../components/Forsale";
+import Title from "../components/Title";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,9 @@ export default function HomePage() {
         </Link>
       </Hero>
       <Facilities />
+      <br />
+      <Title title={"sale products"} center="true" />
+      <br />
       <Forsale title={"sale products"} />
       <div style={{ textAlign: "center" }}>
         <Link to="/products" style={{ textDecoration: "none", margin: "2rem" }}>

@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "../Product";
-import Title from "../Title";
 import { ProductConsumer } from "../../context";
 import { ForsaleWrapper } from "./ForsaleStyle";
 
@@ -12,9 +11,6 @@ export default function index({ title }) {
 
   return (
     <div>
-      <br />
-      <Title title={title} center="true" />
-      <br />
       <ForsaleWrapper>
         <ProductConsumer>
           {(value) => {
@@ -25,70 +21,89 @@ export default function index({ title }) {
             } else {
               myProducts = featuredProducts;
             }
-
-            let contador = -1;
-            //if (myProducts.length > 0) {
-            if (Number(anchoPantalla.width) >= 1200) {
-              return myProducts.map((product) => {
-                contador = contador + 1;
-                if (contador % 3 === 0) {
-                  //console.log(contador, contador % 3);
-                  let slicedProducts = myProducts.slice(contador, contador + 3);
-                  //console.log(slicedProducts);
-                  return (
-                    <div>
-                      <div className="fila-grande">
-                        {slicedProducts.map((item) => {
-                          //console.log(item);
-                          return (
-                            <div className="computadora">
-                              <Product key={item.id} product={item} />
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <br />
-                    </div>
-                  );
-                }
-              });
-            } else if (
-              Number(anchoPantalla.width) > 500 &&
-              Number(anchoPantalla.width) < 1200
-            ) {
-              return myProducts.map((product) => {
-                contador = contador + 1;
-                if (contador % 2 === 0) {
-                  //console.log(contador, contador % 3);
-                  let slicedProducts = myProducts.slice(contador, contador + 2);
-                  //console.log(slicedProducts);
-                  return (
-                    <div>
-                      <div className="fila-grande">
-                        {slicedProducts.map((item) => {
-                          //console.log(item);
-                          return (
-                            <div className="tablet">
-                              <Product key={item.id} product={item} />
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <br />
-                    </div>
-                  );
-                }
-              });
+            if (myProducts.length === 0) {
+              return (
+                <div
+                  className="text-title"
+                  style={{
+                    textAlign: "center",
+                    fontSize: "1.5rem",
+                    color: "#a6a6a6",
+                    marginBottom: "50px",
+                  }}
+                >
+                  Sorry, no items matched your search.
+                </div>
+              );
             } else {
-              return myProducts.map((product) => {
-                return (
-                  <div style={{ margin: "1rem" }}>
-                    <Product key={product.id} product={product} />
-                  </div>
-                );
-              });
+              let contador = -1;
+              if (Number(anchoPantalla.width) >= 1200) {
+                return myProducts.map((product) => {
+                  contador = contador + 1;
+                  if (contador % 3 === 0) {
+                    //console.log(contador, contador % 3);
+                    let slicedProducts = myProducts.slice(
+                      contador,
+                      contador + 3
+                    );
+                    //console.log(slicedProducts);
+                    return (
+                      <div>
+                        <div className="fila-grande">
+                          {slicedProducts.map((item) => {
+                            //console.log(item);
+                            return (
+                              <div className="computadora">
+                                <Product key={item.id} product={item} />
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <br />
+                      </div>
+                    );
+                  }
+                });
+              } else if (
+                Number(anchoPantalla.width) > 500 &&
+                Number(anchoPantalla.width) < 1200
+              ) {
+                return myProducts.map((product) => {
+                  contador = contador + 1;
+                  if (contador % 2 === 0) {
+                    //console.log(contador, contador % 3);
+                    let slicedProducts = myProducts.slice(
+                      contador,
+                      contador + 2
+                    );
+                    //console.log(slicedProducts);
+                    return (
+                      <div>
+                        <div className="fila-grande">
+                          {slicedProducts.map((item) => {
+                            //console.log(item);
+                            return (
+                              <div className="tablet">
+                                <Product key={item.id} product={item} />
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <br />
+                      </div>
+                    );
+                  }
+                });
+              } else {
+                return myProducts.map((product) => {
+                  return (
+                    <div style={{ margin: "1rem" }}>
+                      <Product key={product.id} product={product} />
+                    </div>
+                  );
+                });
+              }
             }
-            //}
           }}
         </ProductConsumer>
       </ForsaleWrapper>

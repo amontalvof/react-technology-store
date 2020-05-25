@@ -23,6 +23,12 @@ class ProductProvider extends Component {
     featuredProducts: [],
     singleProduct: {},
     loading: true,
+    search: "",
+    price: 0,
+    minPri: 0,
+    maxPri: 0,
+    company: "all",
+    shipping: false,
   };
 
   componentDidMount() {
@@ -37,12 +43,16 @@ class ProductProvider extends Component {
       const product = { id, ...item.fields, image };
       return product;
     });
-    //console.log(storeProducts);
+    //console.log(storedProducts);
 
     //featured products
     let featuredProducts = storedProducts.filter(
       (item) => item.featured === true
     );
+
+    //get max price
+    let maxPrice = Math.max(...storedProducts.map((item) => item.price));
+    //console.log(maxPrice);
 
     this.setState(
       {
@@ -52,6 +62,8 @@ class ProductProvider extends Component {
         cart: this.getStorageCart(),
         singleProduct: this.getStorageProduct(),
         loading: false,
+        price: maxPrice,
+        maxPri: maxPrice,
       },
       () => {
         this.addTotals();
@@ -287,6 +299,73 @@ class ProductProvider extends Component {
     );
   };
 
+  //handle change filtering
+  handleChange = (event) => {
+    //console.log(event);
+    const name = event.target.name;
+    let value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value;
+    //console.log(name, value);
+    /*if (name === "price") {
+      value = Number(value);
+    }*/
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.sortData
+    );
+  };
+
+  //este lo hice aparte porque no funciona como los otros filtros
+  handleCompany = (event) => {
+    //console.log(event);
+    const namesliced = event.name;
+    const value = event.value;
+    const name = namesliced.slice(0, 7);
+    //console.log(name, value);
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.sortData
+    );
+  };
+
+  //sort data
+  sortData = () => {
+    //console.log("sorting ...");
+    const { storedProducts, price, company, shipping, search } = this.state;
+    let tempPrice = parseInt(price);
+    let tempProducts = [...storedProducts];
+    //filter by price
+    tempProducts = tempProducts.filter((item) => item.price <= tempPrice);
+    //filter by company
+    if (company !== "all") {
+      tempProducts = tempProducts.filter((item) => item.company === company);
+    }
+    //filter by free shipping
+    if (shipping === true) {
+      tempProducts = tempProducts.filter((item) => item.freeShipping === true);
+    }
+    //filter by search
+    if (search.length > 0) {
+      tempProducts = tempProducts.filter((item) => {
+        let tempSearch = search.toLowerCase();
+        let tempTitle = item.title.toLowerCase().slice(0, search.length);
+        tempTitle = tempTitle;
+        if (tempSearch === tempTitle) {
+          return item;
+        }
+      });
+    }
+    this.setState({
+      filteredProducts: tempProducts,
+    });
+  };
+
   render() {
     return (
       <ProductContext.Provider
@@ -302,6 +381,8 @@ class ProductProvider extends Component {
           decrementCart: this.decrementCart,
           removeCart: this.removeCart,
           clearCart: this.clearCart,
+          handleChange: this.handleChange,
+          handleCompany: this.handleCompany,
         }}
       >
         {/*something really important with this setup is the simple fact that you do need to render children*/}
