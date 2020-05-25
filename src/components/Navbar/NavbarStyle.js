@@ -9,7 +9,7 @@ export const NavWrapper = styled.nav`
   background: ${(props) => props.theme.rainbow.palette.background.main};
   border-bottom: 3px solid ${(props) => props.theme.rainbow.palette.brand.main};
   color: ${(props) => props.theme.rainbow.palette.brand.main};
-  z-index: 1;
+  z-index: 3;
 
   .nav-center {
     display: flex;
@@ -38,9 +38,19 @@ export const NavWrapper = styled.nav`
     h1 {
       letter-spacing: 0.1rem;
       font-size: 1rem;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
     .nav-logo {
-      margin-left: 1.5rem;
+      margin-left: 1.3rem;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .nav-icons {
+      margin-left: 1.3rem;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
   }
 `;

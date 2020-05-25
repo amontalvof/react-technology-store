@@ -13,7 +13,6 @@ export default function index() {
         const {
           filteredProducts,
           search,
-          minPri,
           maxPri,
           company,
           price,
@@ -86,7 +85,7 @@ export default function index() {
                 <Slider
                   className="rainbow-p-around_medium"
                   label="Product Price"
-                  max="1200"
+                  max={maxPri}
                   value={price}
                   onChange={handleChange}
                   name="price"

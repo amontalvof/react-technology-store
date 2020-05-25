@@ -5,7 +5,7 @@ const SidebarWrapper = styled.nav`
   left: 0;
   width: 10rem;
   background: ${(props) => props.theme.rainbow.palette.background.main};
-  z-index: 1;
+  z-index: 3;
   transition: var(--mainTransition);
   transform: ${(props) => (props.show ? "translateX(0)" : "translateX(-100%)")};
   border-bottom-right-radius: 0.3rem;
