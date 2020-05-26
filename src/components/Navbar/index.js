@@ -15,11 +15,13 @@ class Navbar extends React.Component {
             <NavWrapper>
               <div className="nav-center">
                 <FaBars className="nav-icons" onClick={handleSidebar} />
-                <div className="nav-logo" align="center">
-                  <img src={logo} alt="technology logo" width="15%" />
-                  <h1>
-                    <strong>&nbsp;Technology Store</strong>
-                  </h1>
+                <div style={{ marginRight: "1.1rem", marginLeft: "1.1rem" }}>
+                  <div className="nav-logo">
+                    <img src={logo} alt="technology logo" width="15%" />
+                    <h1>
+                      <strong>&nbsp;Technology Store</strong>
+                    </h1>
+                  </div>
                 </div>
                 {cartItems < 1 ? (
                   <FaShoppingCart className="nav-icons" onClick={handleCart} />

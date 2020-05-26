@@ -34,7 +34,7 @@ export const NavWrapper = styled.nav`
     font-size: 1.5rem;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 450px) {
     h1 {
       letter-spacing: 0.1rem;
       font-size: 1rem;
@@ -42,13 +42,14 @@ export const NavWrapper = styled.nav`
       margin-bottom: 5px;
     }
     .nav-logo {
-      margin-left: 1.3rem;
+      /*margin-left: 1.3rem;*/
       margin-top: 5px;
       margin-bottom: 5px;
     }
 
     .nav-icons {
-      margin-left: 1.3rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
       margin-top: 5px;
       margin-bottom: 5px;
     }
