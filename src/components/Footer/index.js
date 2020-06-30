@@ -18,8 +18,8 @@ export default function Footer() {
               </div>
               <div className="derechos" style={{ textAlign: "center" }}>
                 <p>
-                  Copyright &copy; amf-react-technology-store{" "}
-                  {new Date().getFullYear()}, all rights reserved.
+                  Copyright &copy; Andy Montalvo {new Date().getFullYear()}, all
+                  rights reserved.
                 </p>
               </div>
             </FooterWrapper>
