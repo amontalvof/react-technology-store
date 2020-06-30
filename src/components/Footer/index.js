@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
               <div className="derechos" style={{ textAlign: "center" }}>
                 <p>
-                  Copyright &copy; Andy Montalvo{new Date().getFullYear()}, all
+                  Copyright &copy; Andy Montalvo {new Date().getFullYear()}, all
                   rights reserved.
                 </p>
               </div>
