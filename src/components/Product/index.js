@@ -60,7 +60,7 @@ export default function index({ product }) {
                 <img
                   src={product.image}
                   alt="product"
-                  style={{ width: "15rem", height: "15rem" }}
+                  style={{ width: "10rem", height: "10rem" }}
                   onClick={() => setSingleProduct(product.id)}
                 />
               </Link>

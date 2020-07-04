@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import mainBcg from "../images/mainBcg.jpg";
 import { Button } from "react-rainbow-components";
 import Facilities from "../components/Facilities";
-import Forsale from "../components/Forsale";
+import ProductsList from "../components/ProductsList/index";
 import Title from "../components/Title";
 
 export default function HomePage() {
@@ -20,7 +20,7 @@ export default function HomePage() {
       <br />
       <Title title={"sale products"} center="true" />
       <br />
-      <Forsale title={"sale products"} />
+      <ProductsList title={"sale products"} />
       <div style={{ textAlign: "center" }}>
         <Link to="/products" style={{ textDecoration: "none", margin: "2rem" }}>
           <Button label="OUR PRODUCTS" variant="border-filled" />
