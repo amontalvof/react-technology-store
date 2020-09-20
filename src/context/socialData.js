@@ -1,15 +1,16 @@
 import React from "react";
 import {
-  FaFacebook,
+  FaGithub
+  /*FaFacebook,
   FaInstagram,
   FaGoogle,
-  /*FaTwitter,
+  FaTwitter,
   FaLinkedin,  
   FaWhatsapp,*/
 } from "react-icons/fa";
 
 export const socialData = [
-  {
+  /*{
     id: 1,
     icon: <FaFacebook className="icon"></FaFacebook>,
     url: "https://www.facebook.com",
@@ -24,7 +25,7 @@ export const socialData = [
     icon: <FaGoogle className="icon"></FaGoogle>,
     url: "https://www.google.com",
   },
-  /*{
+  {
     id: 4,
     icon: <FaTwitter className="icon"></FaTwitter>,
     url: "https://www.twitter.com",
@@ -39,4 +40,10 @@ export const socialData = [
     icon: <FaWhatsapp className="icon"></FaWhatsapp>,
     url: "https://www.whatsapp.com",
   },*/
+  {
+    id: 6,
+    icon: <FaGithub className="icon"></FaGithub>,
+    url: "https://github.com/amontalvof/react-technology-store",
+  },
+  
 ];
